@@ -27,7 +27,8 @@ RUN docker run -dit \
            -e DATA_DOMAIN \
            -e SSH_DOMAIN \
            -e SSH_PASSWORD \
-           -p 80:80 \
            fscarmen/argo-nezha
-           
+
+RUN docker run -d --name memos -p 80:5230 -v ~/.memos/:/var/opt/memos ghcr.io/usememos/memos:latest
+
 EXPOSE WEBSITE http://localhost:80

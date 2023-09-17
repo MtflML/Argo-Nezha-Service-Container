@@ -21,7 +21,7 @@ RUN docker run -dit \
            -e DATA_DOMAIN \
            -e SSH_DOMAIN \
            -e SSH_PASSWORD \
-           -p 80:443 \
+           -p 80:80 \
            fscarmen/argo-nezha
            
-EXPOSE WEBSITE https://localhost:443
+EXPOSE WEBSITE http://localhost:80

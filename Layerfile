@@ -1,7 +1,9 @@
 FROM vm/ubuntu:18.04
 
 RUN apt-get update && \
-    apt-get install curl && \
+    apt-get install ca-certificates curl gnupg lsb-release && \
+    sudo mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
     curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 
 SECRET ENV GH_EMAIL GH_USER GH_PAT GH_REPO GH_USER GH_CLIENTID GH_CLIENTSECRET \

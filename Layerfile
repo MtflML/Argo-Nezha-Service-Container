@@ -10,11 +10,6 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install docker-ce docker-ce-cli containerd.io
 
-SECRET ENV GH_EMAIL GH_USER GH_PAT GH_REPO GH_USER GH_CLIENTID GH_CLIENTSECRET \
-    ARGO_AUTH WEB_DOMAIN DATA_DOMAIN SSH_DOMAIN SSH_PASSWORD
-
-
-
-RUN docker run -d --name memos -p 80:5230 -v ~/.memos/:/var/opt/memos ghcr.io/usememos/memos:latest
+RUN docker run -d --restart=always --name memos -p 80:5230 -v ~/.memos/:/var/opt/memos ghcr.io/usememos/memos:latest
 
 EXPOSE WEBSITE http://localhost:80

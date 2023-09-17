@@ -1,0 +1,24 @@
+FROM vm/ubuntu:18.04
+
+RUN apt-get update && \
+    apt-get install curl && \
+    curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+
+SECRET ENV GH_EMAIL GH_USER GH_PAT GH_USER GH_CLIENTID GH_CLIENTSECRET \
+    ARGO_AUTH WEB_DOMAIN DATA_DOMAIN SSH_DOMAIN SSH_PASSWORD
+
+RUN docker run -dit \
+           --name nezha_dashboard \
+           --restart always \
+           -e GH_USER \
+           -e GH_EMAIL \
+           -e GH_PAT \
+           -e GH_REPO \
+           -e GH_CLIENTID  \
+           -e GH_CLIENTSECRET \
+           -e ARGO_AUTH \
+           -e WEB_DOMAIN \
+           -e DATA_DOMAIN \
+           -e SSH_DOMAIN \
+           -e SSH_PASSWORD \
+           fscarmen/argo-nezha
